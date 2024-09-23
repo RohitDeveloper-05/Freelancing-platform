@@ -8,8 +8,7 @@ import MyGigs from "./pages/myGigs/MyGigs"
 import Add from "./pages/add/Add"
 import Messages from "./pages/messages/Messages"
 import Message from "./pages/message/Message"
-
-
+import "./app.scss"
 
 
 import {
