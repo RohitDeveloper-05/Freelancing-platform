@@ -4,6 +4,7 @@ import "./NavBar.scss"
 
 const NavBar = () =>{
   const [active,setActive] = useState(false)
+  const [open,setOpen] = useState(false)
 
   const isActive = () =>{
     window.scrollY > 0 ? setActive(true) : setActive(false)
@@ -40,10 +41,10 @@ const NavBar = () =>{
           {!currentUser && <button>Join</button>}
 
           {currentUser && (
-            <div className="user">
+            <div className="user" onClick={()=>setOpen(!open)}>
               <img src="img1.png" alt = "Not Found"/>
               <span>{currentUser?.username}</span>
-              <div className="options">
+              {open && <div className="options">
                 {currentUser?.isSeller && (
                   <>
                     <span>Gigs</span>
@@ -54,7 +55,8 @@ const NavBar = () =>{
                 <span>Orders</span>
                 <span>Messages</span>
                 <span>Logout</span>
-              </div>
+                </div>
+              }
             </div>
           )}          
         </div>
