@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./NavBar.scss"
 
+
 const NavBar = () =>{
   const [active,setActive] = useState(false)
 
@@ -12,10 +13,15 @@ const NavBar = () =>{
     window.addEventListener("scroll",isActive)
 
     return () =>{
-      
       window.removeEventListener("scroll",isActive)
     }
   },[])
+
+  const currentUser = {
+    id:1,
+    username:"John Dae",
+    isSeller:true
+  }
 
   return(
     <div className={active? "navbar active":"navbar"}>
@@ -30,8 +36,27 @@ const NavBar = () =>{
           <span>Explore</span>
           <span>English</span>
           <span>Sign in</span>
-          <span>Become a seller</span>
-          <button>Join</button>
+          {!currentUser?.isSeller && <span>Become a seller</span>}
+          {!currentUser && <button>Join</button>}
+
+          {currentUser && (
+            <div className="user">
+              <img src="img1.png" alt = "Not Found"/>
+              <span>{currentUser?.username}</span>
+              <div className="options">
+                {currentUser?.isSeller && (
+                  <>
+                    <span>Gigs</span>
+                    <span>Add New Gigs</span>
+                  </>
+                )}
+
+                <span>Orders</span>
+                <span>Messages</span>
+                <span>Logout</span>
+              </div>
+            </div>
+          )}          
         </div>
       </div>
 
