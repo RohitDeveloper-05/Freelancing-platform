@@ -12,11 +12,10 @@ const NavBar = () =>{
     window.addEventListener("scroll",isActive)
 
     return () =>{
+      
       window.removeEventListener("scroll",isActive)
     }
   },[])
-
-
 
   return(
     <div className={active? "navbar active":"navbar"}>
