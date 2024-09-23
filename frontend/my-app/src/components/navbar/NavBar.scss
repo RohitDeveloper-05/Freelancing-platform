@@ -1,9 +1,18 @@
 .navbar{
   display: flex;
   align-items: center;
-  //background-color: #013914;
+  background-color: #013914;
   color:white;
   flex-direction: column;
+  transition: 0.5s all ease;
+  position:sticky;
+  top:0;
+
+
+  &.active{
+    background-color: white;
+    color:black
+  }
   
   .container{
     width: 1400px;
