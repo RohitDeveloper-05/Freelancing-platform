@@ -71,8 +71,34 @@ const NavBar = () =>{
         <>
           <hr />
           <div className="menu">
-            <span>Text 1</span>
-            <span>Text 2</span>
+            <Link className='link menuLink' to='/'>
+              Graphics & Design
+            </Link>
+            <Link className='link' to='/'>
+              Video & Animation
+            </Link>
+            <Link className='link' to='/'>
+              Writing & Translation
+            </Link>
+            <Link className='link' to='/'>
+              AI Services
+            </Link>
+            <Link className='link' to='/'>
+              Digital Marketing
+            </Link>
+            <Link className='link' to='/'>
+              Music & Audio
+            </Link>
+            <Link className='link' to='/'>
+              Programming & Tech
+            </Link>
+            <Link className='link' to='/'>
+              Business
+            </Link>
+            <Link className='link' to='/'>
+              Lifestyle
+            </Link>
+
           </div>
         </>
       )}
