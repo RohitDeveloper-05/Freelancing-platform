@@ -38,7 +38,7 @@ const NavBar = () =>{
         </div>
 
         <div className="links">
-          <span>Fiver Business</span>
+          <span>freeLancer Business</span>
           <span>Explore</span>
           <span>English</span>
           <span>Sign in</span>

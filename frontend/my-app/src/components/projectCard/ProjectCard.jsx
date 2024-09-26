@@ -9,7 +9,7 @@ const ProjectCard = ({item}) =>{
         <img src={item.img} alt=''/> 
         <div className="info">
           <img src={item.pp} alt=''/>
-          <div className='text'>
+          <div className='texts'>
             <h2>{item.cat}</h2>
             <span>{item.username}</span>
           </div>

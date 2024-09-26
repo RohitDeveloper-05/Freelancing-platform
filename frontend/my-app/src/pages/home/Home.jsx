@@ -5,7 +5,7 @@ import TrustedBy from '../../components/trustedBy/TrustedBy'
 import Slide from '../../components/slide/Slide'
 import { cards,projects } from '../../data'
 import CatCard from '../../components/catCard/CatCard'
-import ProjectCard from '../../components/projectCard copy/ProjectCard'
+import ProjectCard from '../../components/projectCard/ProjectCard'
 
 const Home = () =>{
   return(
@@ -65,7 +65,7 @@ const Home = () =>{
       <div className="features dark ">
         <div className='container'>
             <div className='item'>
-              <h1>fiverr business</h1>
+              <h1>freeLancer business</h1>
               <h1>A business solution designed for <i>teams</i></h1>
               <p>
               Upgrade to a curated experience packed with tools and benefits,
@@ -86,7 +86,7 @@ const Home = () =>{
                 <img src="./img/check.png" alt="" />
                 Manage teamwork and boost productivity with one powerful workspace
               </div>
-              <button>Explore Liverr Business</button>
+              <button>Explore freeLancer Business</button>
           </div> 
 
           <div className="item">
