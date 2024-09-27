@@ -10,7 +10,6 @@ import ProjectCard from '../../components/projectCard/ProjectCard'
 const Home = () =>{
   return(
     <div className='home'>
-      Home
       <Featured />
       <TrustedBy/>
       <Slide slidesToShow = {5} arrowsScroll = {3}>
