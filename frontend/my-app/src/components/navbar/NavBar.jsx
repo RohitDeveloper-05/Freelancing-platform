@@ -99,8 +99,8 @@ const NavBar = () =>{
             <Link className='link' to='/'>
               Lifestyle
             </Link>
-
           </div>
+          <hr />
         </>
       )}
       
