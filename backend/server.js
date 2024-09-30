@@ -1,5 +1,6 @@
 import expresss from 'express'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 import dotenv from 'dotenv'
 
@@ -19,6 +20,7 @@ dotenv.config()
 
 ConfigureDb()
 
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(expresss.json());
 app.use(cookieParser());
 
