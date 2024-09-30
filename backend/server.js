@@ -1,4 +1,6 @@
 import expresss from 'express'
+import cookieParser from 'cookie-parser'
+
 import dotenv from 'dotenv'
 
 import ConfigureDb from './Config/ConfigureDb.js'
@@ -18,6 +20,9 @@ dotenv.config()
 ConfigureDb()
 
 app.use(expresss.json());
+app.use(cookieParser());
+
+
 app.use("/api/auth",authRoute)
 app.use("/api/user",userRoute)
 app.use("/api/gigs",gigRoute)
