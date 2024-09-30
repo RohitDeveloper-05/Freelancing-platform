@@ -5,6 +5,6 @@ console.log("Inside the auth.route.js")
 const router = express.Router()
 
 router.post("/register",register)
-router.get("/login",)
+router.post("/login",login)
 
 export default router
