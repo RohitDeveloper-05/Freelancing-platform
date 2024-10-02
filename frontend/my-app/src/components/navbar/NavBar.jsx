@@ -51,16 +51,17 @@ const NavBar = () =>{
           <span>freeLancer Business</span>
           <span>Explore</span>
           <span>English</span>
-          <span>Sign in</span>
+          
           {!currentUser?.isSeller && <span>Become a seller</span>}
-          {!currentUser && <button>Join</button>}
-
-          {currentUser && (
+         
+         
+          {currentUser ? (
             <div className="user" onClick={()=>setOpen(!open)}>
-              <img src={currentUser.img || "/img/noavtar.jpg"} alt = "Not Found"/>
+              <img src={currentUser.img || "/img/no_avtar.jpg"} alt = "Not Found"/>
               <span>{currentUser?.username}</span>
 
-              {open && <div className="options">
+              {open && (
+                <div className="options">
                 {currentUser?.isSeller && (
                   <>
                     <Link className='link' to='/mygigs'>Gigs</Link>
@@ -73,8 +74,13 @@ const NavBar = () =>{
                 <Link className='link' to='/messages'>Messages</Link>
                 <Link className='link' onClick={handleLogout} >Logout</Link>
                 </div>
-              }
+              )}
             </div>
+          ):(
+              <>
+                <Link to="/login" className='link'>Sign in</Link>
+                <Link className="link" to="/register"><button>Join</button></Link>
+              </>
           )}          
         </div>
       </div>

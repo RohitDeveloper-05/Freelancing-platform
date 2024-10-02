@@ -12,6 +12,11 @@ import Register from "./pages/register/Register"
 import Login from "./pages/login/Login";
 import "./app.scss"
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
 
 import {
   createBrowserRouter,
@@ -20,13 +25,16 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const queryClient = new QueryClient();
 
   const Layout = ()=>{
     return(
       <div className="app">
-        <NavBar/>
-        <Outlet/>
-        <Footer/>
+        <QueryClientProvider client={queryClient}>
+          <NavBar/>
+          <Outlet/>
+          <Footer/>
+        </QueryClientProvider>        
       </div>
     )
   }
