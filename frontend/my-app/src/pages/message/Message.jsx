@@ -1,180 +1,71 @@
+import { useMutation,useQuery,useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import newRequest from "../../utils/newRequest";
 import "./Message.scss";
 
 const Message = () => {
+  const {id} = useParams()
+  
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  const queryClient = useQueryClient();
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["messages"],
+    queryFn: () =>
+      newRequest
+        .get(
+          `/messages/${id}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
+  });
+
+  const mutation = useMutation({
+    mutationFn: (message) => {
+      return newRequest.post(`/messages`,message);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["messages"]);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({
+      conversationId: id,
+      desc: e.target[0].value,
+    });
+    e.target[0].value = "";
+  };
+
   return (
     <div className="message">
       <div className="container">
         <span className="breadcrumbs">
           <Link to="/messages">Messages</Link> > John Doe >
         </span>
-        <div className="messages">
-          
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.               
-            </p>
-          </div>
-          <div className="item owner">
-            <img
-              src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Yeah Sure, I can do that. I will deliver you the revised image in next 1-2 days. 
-              Kindly let me know incase if you want any other changesin the image
-            </p>
-          </div>
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.
-            </p>
-          </div>
-          <div className="item owner">
-            <img
-              src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Yeah Sure, I can do that. I will deliver you the revised image in next 1-2 days. 
-              Kindly let me know incase if you want any other changesin the image
-            </p>
-          </div>
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.
-            </p>
-          </div>
-          <div className="item owner">
-            <img
-              src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Yeah Sure, I can do that. I will deliver you the revised image in next 1-2 days. 
-              Kindly let me know incase if you want any other changesin the image
-            </p>
-          </div>
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.
-            </p>
-          </div>
-          <div className="item owner">
-            <img
-              src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Yeah Sure, I can do that. I will deliver you the revised image in next 1-2 days. 
-              Kindly let me know incase if you want any other changesin the image
-            </p>
-          </div>
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.
-            </p>
-          </div>
-          <div className="item owner">
-            <img
-              src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Yeah Sure, I can do that. I will deliver you the revised image in next 1-2 days. 
-              Kindly let me know incase if you want any other changesin the image
-            </p>
-          </div>
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.
-            </p>
-          </div>
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.
-            </p>
-          </div>
-          <div className="item owner">
-            <img
-              src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Yeah Sure, I can do that. I will deliver you the revised image in next 1-2 days. 
-              Kindly let me know incase if you want any other changesin the image
-            </p>
-          </div>
-          <div className="item owner">
-            <img
-              src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Yeah Sure, I can do that. I will deliver you the revised image in next 1-2 days. 
-              Kindly let me know incase if you want any other changesin the image
-            </p>
-          </div>
-          <div className="item">
-            <img
-              src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <p>
-              Hey I wanted to make some revision in the image part of the image which you have generated.
-              Can you make the background of the image of be little dark and text to be little lighter. 
-              Plus By when can i expect the revised image.
-            </p>
-          </div>
-        </div>
+        {isLoading ? "loading" : error ? "error" :
+          (<div className="messages">
+            {
+              data.map((m) => (
+              <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
+              <img
+                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt=""
+              />
+              <p>{m.desc}</p>
+              </div> ))
+            }     
+          </div>)          
+        }
         <hr />
-        <div className="write">
+        <form className="write" onSubmit={handleSubmit}>
           <textarea type="text" placeholder="write a message" />
-          <button>Send</button>
-        </div>
+          <button type="submit">Send</button>
+        </form>
       </div>
     </div>
   );
