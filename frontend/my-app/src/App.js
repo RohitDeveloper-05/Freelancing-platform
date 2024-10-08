@@ -24,6 +24,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import Pay from "./pages/pay/Pay";
+import Success from "./pages/success/Success";
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -83,6 +86,14 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/pay/:id",
+          element: <Pay />,
+        },
+        {
+          path: "/success",
+          element: <Success />,
         }
 
       ]
