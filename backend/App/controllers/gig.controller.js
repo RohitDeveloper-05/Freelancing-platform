@@ -1,7 +1,11 @@
 import Gig from "../models/Gig.model.js";
 import createError from "../utils/createError.js";
 
+//console.log("Inside gig.controller.js")
+
 export const createGig = async (req, res, next) => {
+  //console.log("Inside fn createGig")
+
   if (!req.isSeller)
     return next(createError(403, "Only sellers can create a gig!"));
 
@@ -10,10 +14,13 @@ export const createGig = async (req, res, next) => {
     ...req.body,
   });
 
+  //console.log("new Gig", newGig)
+
   try {
     const savedGig = await newGig.save();
     res.status(201).json(savedGig);
   } catch (err) {
+    console.log(err)
     next(err);
   }
 };
@@ -42,6 +49,7 @@ export const getGig = async (req, res, next) => {
 }
 
 export const getGigs = async (req, res, next) => {
+  //console.log("Inside getGigs")
   const q = req.query;
   const filters = {
     ...(q.userId && { userId: q.userId }),

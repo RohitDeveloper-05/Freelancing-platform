@@ -8,14 +8,22 @@ import newRequest from "../../utils/newRequest";
 function MyGigs() {
   const currentUser = getCurrentUser()
 
+  console.log("currentUser",currentUser)
+
   const queryClient = useQueryClient()
   const { isLoading, error, data } = useQuery({
     queryKey: ["myGigs"],
     queryFn: () =>
-      newRequest.get(`/gigs?userId=${currentUser.id}`).then((res) => {
+      newRequest.get(`/gigs?userId=${currentUser._id}`).
+      then((res) => {
         return res.data;
-    }),
+      })
+      .catch((err)=>{
+        console.log(err)
+      }),
   });
+
+  console.log(data)
 
   const mutation = useMutation({
     mutationFn: (id) => {
@@ -33,7 +41,7 @@ function MyGigs() {
 
   const handleDelete = (id) => {
     mutation.mutate(id);
-  };
+  };    
 
   return (
     <div className="myGigs">
@@ -49,13 +57,16 @@ function MyGigs() {
            )}
          </div>
          <table>
-           <tr>
+          <thead>
+            <tr>
              <th>Image</th>
              <th>Title</th>
              <th>Price</th>
              <th>Sales</th>
              <th>Action</th>
-           </tr>
+            </tr>
+          </thead>
+          <tbody>
             {data.map((gig) => (
               <tr key={gig._id}>
               <td>
@@ -78,6 +89,8 @@ function MyGigs() {
               </td>
               </tr>
             ))}
+          </tbody>
+           
          </table>
        </div>)
       }     
