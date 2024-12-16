@@ -1,14 +1,18 @@
 import React from 'react'
 import "./Gig.scss"
 import {Slider} from "infinite-react-carousel/lib"
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from '../../components/reviews/Reviews';
+import getCurrentUser from '../../utils/getCurrentUser';
 
 function Gig() {
   const { id } = useParams();
   //console.log(params)
+
+  const currentUser = getCurrentUser()
+  const navigate = useNavigate()
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["gig"],
@@ -28,6 +32,10 @@ function Gig() {
       }),
     enabled:!!userId
   });
+
+  const handleRedireaction = ()=>{
+    {currentUser?.isVerified ? navigate(`/pay/${id}`): navigate("/login")}
+  }
 
   return (
     
@@ -150,9 +158,9 @@ function Gig() {
                 ))}
               </div>
 
-              <Link to={`/pay/${id}`}>
-              <button>Continue</button>
-              </Link>
+             
+              <button onClick={handleRedireaction}>Continue</button>
+              
               
             </div>
           </div>

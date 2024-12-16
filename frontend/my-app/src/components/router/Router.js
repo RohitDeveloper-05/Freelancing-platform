@@ -20,8 +20,10 @@ import Messages from "../../pages/messages/Messages"
 import Message from "../../pages/message/Message"
 import Register from "../../pages/register/Register"
 import Login from "../../pages/login/Login";
+import VerifyEmail from "../verifyEmail/verifyEmail";
 import Pay from "../../pages/pay/Pay";
 import Success from "../../pages/success/Success";
+
 
 export const Layout = ()=>{  
   const queryClient = new QueryClient();
@@ -81,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/verifyEmail",
+        element: <VerifyEmail />,
       },
       {
         path: "/pay/:id",

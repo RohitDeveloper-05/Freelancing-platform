@@ -23,6 +23,7 @@ const NavBar = () =>{
   },[])
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log("Inside the NavBar Component, CurrenUser value",currentUser)
 
   const navigate = useNavigate();
 
@@ -55,7 +56,7 @@ const NavBar = () =>{
           {!currentUser?.isSeller && <span>Become a seller</span>}
          
          
-          {currentUser ? (
+          {currentUser?.isVerified ? (
             <div className="user" onClick={()=>setOpen(!open)}>
               <img src={currentUser.img || "/img/no_avtar.jpg"} alt = "Not Found"/>
               <span>{currentUser?.username}</span>

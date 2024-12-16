@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import upload from "../../utils/upload.js";
 import "./Register.scss";
 import newRequest from "../../utils/newRequest.js";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+
+
 
 function Register() {
   const [file, setFile] = useState(null);
+  const [countries,setCountries] = useState([])
+  //const [countryname,setCountryName] = useState("")
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -15,9 +20,30 @@ function Register() {
     isSeller: false,
     desc: "",
   });
+  console.log(user)
 
   //console.log(user)
   const navigate = useNavigate();
+
+  const getCountryName = async()=>{
+    try{
+      const resp = await axios.get(`https://restcountries.com/v3.1/all`)
+      return resp.data.map((country) => country?.name?.common).sort()
+      
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      const name_countries = await getCountryName();
+      setCountries(name_countries)
+
+    };
+
+    fetchCountries();
+  }, []);
 
   const handleChange = (e) => {
     setUser((prev) => {
@@ -70,12 +96,26 @@ function Register() {
           <label htmlFor="">Profile Picture</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
           <label htmlFor="">Country</label>
-          <input
+          {/* <input
             name="country"
             type="text"
             placeholder="Usa"
             onChange={handleChange}
-          />
+          /> */}
+
+          {countries && (
+            <div>
+            <select value={user?.country} onChange={(e)=>{setUser({...user,country:e.target.value})}}>
+              <option value="">-- Select a Country --</option>
+              {countries.map((country, index) => (
+                <option key={index} value={country}>
+                  {country}
+                </option>
+            ))}
+          </select>
+          </div>)}
+          
+          
           <button type="submit">Register</button>
         </div>
         <div className="right">

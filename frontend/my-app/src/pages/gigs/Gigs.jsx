@@ -13,6 +13,7 @@ const Gigs = () =>{
   const maxRef = useRef();
 
   const { search } = useLocation();
+  console.log("hello",search)
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
@@ -45,10 +46,10 @@ const Gigs = () =>{
   return(
     <div className='gigs'>
       <div className="container">
-        <span className="breadcrumbs">FREELANCER > GRAPHICS & DESIGN</span>
-        <h1>AI Artists</h1>
+        <span className="breadcrumbs">FREELANCER > </span>
+        {/* {data.length > 0 ? <h1>{data[0].cat.toUpperCase()}</h1> : "Not Found"} */}
         <p>
-        Explore the boundaries of art and technology with freeLancer's AI artists
+        Explore the boundaries of art and technology with freeLancer's professional
         </p>
         <div className="menu">
           <div className="left">
