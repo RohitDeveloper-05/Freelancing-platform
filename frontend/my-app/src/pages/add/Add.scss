@@ -23,6 +23,12 @@
         font-size: 18px;
       }
 
+      
+      .error{
+        color:red;
+      }
+    
+
       .info,
       .details {
         flex: 1;
@@ -30,6 +36,13 @@
         flex-direction: column;
         gap: 10px;
         justify-content: space-between;
+
+        // .error{
+        //   // color:red;
+        //   // border-color: red !important;
+        //   border: 2px solid red;
+        //   //border-radius: 4px;
+        // }
 
         input,
         select,

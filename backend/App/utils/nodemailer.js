@@ -6,15 +6,15 @@ const sendMail = (user, htmlMsg, subject) => {
         port: 465,
         secure: true,
         auth: {
-            user: "therealrambo08@gmail.com",
-            pass: 'fcpu ksiq naol ladr'
+            user: process.env.SENDER_EMAIL,
+            pass: process.env.SENDER_PASS
         }
     });
 
     async function mailSend() {
         // send mail with defined transport object
         const info = await transporter.sendMail({
-            from: "therealrambo08@gmail.com", // sender address
+            from: process.env.SENDER_EMAIL, // sender address
             to: user.email, // list of receivers
             subject: subject, // Subject line
             html: htmlMsg, // html body

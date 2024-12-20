@@ -23,6 +23,7 @@ function MyGigs() {
       }),
   });
 
+
   console.log(data)
 
   const mutation = useMutation({

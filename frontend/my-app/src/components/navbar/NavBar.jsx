@@ -23,12 +23,12 @@ const NavBar = () =>{
   },[])
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log("Inside the NavBar Component, CurrenUser value",currentUser)
+  console.log("NavBar Component, CurrenUser value",currentUser)
 
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    console.log("getting Called")
+    //console.log("getting Called")
     try {
       await newRequest.post("/auth/logout");
       localStorage.setItem("currentUser", null);
